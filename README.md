@@ -9,3 +9,20 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 ```shell
 mongod --dbpath=/Users/santosh/SAN/mongodb/data
 ````
+
+# mongo shell commands
+```shell
+cls
+show dbs
+use <db-name>
+
+> db.flightData.insertOne({
+...     "departureAirport": "MUC",
+...     "arrivalAirport": "SFO",
+...     "aircraft": "Airbus A380",
+...     "distance": 12000,
+...     "intercontinental": true
+... });
+
+db.flightData.find().pretty()
+```
