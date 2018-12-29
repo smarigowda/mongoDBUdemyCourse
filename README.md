@@ -58,8 +58,10 @@ db.flightData.find({ aircraft: 'Airbus BA118' }).pretty();
 
 db.flightData.find({ distance: { $gt: 2000 } }).pretty();
 
+# pretty is a method on the cursor
 db.flightData.find({ distance: { $lt: 4000 } }).pretty();
 
+# findOne returns first Document, pretty does not exist on Document
 db.flightData.findOne({ distance: { $lt: 4000 } })
 
 db.flightData.updateOne({ _id: ObjectId("5c25411f22a240beec1cde27") }, { $set: { delayed: true } })
@@ -78,4 +80,13 @@ db.flightData.replaceOne({ _id: ObjectId("5c25411f22a240beec1cde27") }, {
         intercontinental: true })
 
 db.flightData.find().pretty()
+
+db.passengers.find().toArray()
+
+db.passengers.find().toArray(d => printjson(d));
+
+db.passengers.forEach(d => printjson(d))
+
+# find returns a cursor, cursor has a forEach method
+db.passengers.find().forEach(d => printjson(d))
 ```
