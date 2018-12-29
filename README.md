@@ -89,4 +89,19 @@ db.passengers.forEach(d => printjson(d))
 
 # find returns a cursor, cursor has a forEach method
 db.passengers.find().forEach(d => printjson(d))
+
+# Projection
+db.passengers.find({}, { name: 1, _id: 0 })
+
+# Array
+db.passengers.update({ name: "Albert Twostone"}, {$set: { hobby: [ "sports", "cooking" ]}})
+
+# Accessing embedded element
+db.passengers.findOne({ name: "Albert Twostone"}).hobby
+
+# Find an array element
+db.passengers.findOne({ hobby: "sports"})
+
+# Find in nested document
+db.flightData.find({ "status.lastUpdated" : 'one hour ago'}).pretty()
 ```
