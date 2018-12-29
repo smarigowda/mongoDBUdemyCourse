@@ -104,4 +104,29 @@ db.passengers.findOne({ hobby: "sports"})
 
 # Find in nested document
 db.flightData.find({ "status.lastUpdated" : 'one hour ago'}).pretty()
+
+# Update one patient data
+db.patient.updateOne({ firstName: 'Santosh'}, { $set: { "history.$.content": 'cough' } })
+
+db.patient.find({ firstName: 'Santosh', "history.disease": 'cold' }).pretty();
+
+db.patient.updateOne({ firstName: 'Santosh', "history.disease": 'cold' }, { $set: { "history.$.disease": 'cough' } }, { multi: true });
+
+db.patient.updateOne({ firstName: 'Santosh', "history.disease": 'cough' }, { $set: { "history.$.disease": 'cold' } }, { multi: true });
+
+# This also work, no multi
+db.patient.updateOne({ firstName: 'Santosh', "history.disease": 'cough' }, { $set: { "history.$.disease": 'cold' } });
+
+db.patient.updateOne({ firstName: 'Toshi', "history.disease": 'cough', lastName: 'Marigowda' }, { $set: { lastName: 'MGowda' } });
+
+db.patient.find({ age: {$gt: 30}}).pretty();
+
+db.patient.updateOne({ firstName: 'Sukruthi'}, { $set: { age: 15 }});
+
+db.patient.updateOne({ firstName: 'Roopa'}, { $set: { age: 35 }});
+
+db.patient.find({ age: {$gt: 40}}).pretty();
+
+db.patient.deleteMany({ "history.disease": 'cold' })
+
 ```
