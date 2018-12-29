@@ -129,4 +129,11 @@ db.patient.find({ age: {$gt: 40}}).pretty();
 
 db.patient.deleteMany({ "history.disease": 'cold' })
 
+# dropping collection and db
+db.patient.drop();
+
+db.dropDatabase();
+
+
+
 ```
